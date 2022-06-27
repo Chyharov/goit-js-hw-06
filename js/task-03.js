@@ -13,16 +13,15 @@ const images = [
   },
 ];
 
+
 const imagesContainer = document.querySelector(".gallery");
 
 imagesContainer.style.display = "flex";
 imagesContainer.style.justifyContent = "space-between";
 
-const imageElements = images.reduce(
-  (string, image) =>
-    string +
-    `<img src = ${image.url} alt = ${image.alt} width = 320 height = 240 </img>`,
-  " "
-);
+const imageElements  = ({ url, alt }) => {
+  return `<li><img src = "${url}" alt = "${alt}" width = "150"></li>`;
+};
 
-imagesContainer.insertAdjacentHTML("afterbegin", imageElements);
+const imageItems = images.map(imageElements ).join("");
+imagesContainer.insertAdjacentHTML("afterbegin", imageItems);
